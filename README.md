@@ -1,6 +1,6 @@
 # Store
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.9.
+This is a dummy store created using [Dummy Json](https://dummyjson.com/). The main module of this app is Product module. 
 
 ## Development server
 
