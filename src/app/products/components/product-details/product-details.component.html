@@ -1,0 +1,58 @@
+<div class="container detail mt-5 mb-5 font-weight-bold">
+    <div class="row">
+        <h1>Product Detail</h1> <br />
+        <div class="p-3 d-flex align-items-center back" (click)="goBack()"> 
+            <fa-icon [icon]="['fas', 'arrow-left']"></fa-icon>
+            <span class="mx-2">Back</span> 
+        </div>
+    </div>
+
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-2 text-center my-5 mx-2"><div class="thumbnail" *ngFor="let image of product?.images"> 
+                                <img class="border my-2"  src="{{image}}" width="70" (click)="changeImage(image)"> 
+                            </div></div>
+                            <div class="col-6">
+                                <div class="images p-3">
+                                    <div class="image-conatiner text-center p-4"> 
+                                        <img id="main-image" src="{{product?.images[0]}}" width="350" height="300"/> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="col-md-6 product-col">
+                        <div class="product p-4">
+                            <div class="mt-4 mb-3"> 
+                                <h5 class="text-uppercase">{{product.category}}</h5>
+                                <span class="text-uppercase text-muted brand">{{product.brand}}</span>
+                                <h5 class="text-uppercase f-25">{{product.title}}</h5>
+                                <div class="price d-flex flex-row align-items-center"> 
+                                    <span class="act-price mr-5 f-30">${{product.price}}</span>
+                                    <div class="mx-5"> 
+                                        <small class="discount border px-2">{{product.discountPercentage}}% OFF</small> 
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="about">{{product.description}}</p>
+                            <p class="about mt-3">Available Stock: {{product.stock}}</p>
+                            <div class="sizes mt-5">
+                                <ng-template #t let-fill="fill">
+                                    <span class="star" [class.full]="fill === 100">
+                                        <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+                                    </span>
+                                </ng-template>
+                                
+                                <ngb-rating [rate]="product.rating" [starTemplate]="t" [readonly]="true" [max]="5"></ngb-rating>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

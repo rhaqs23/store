@@ -1,0 +1,53 @@
+<div class="row mx-3 my-3">
+    <div class="col-9">
+        <h1>Product List</h1> <br>
+        <div class="d-flex align-items-center back" (click)="goBack()"> 
+            <fa-icon [icon]="['fas', 'arrow-left']"></fa-icon>
+            <span class="mx-2">Back</span> 
+        </div>
+    </div>
+    <div class="col-3">
+        <form class="form">
+            <input [(ngModel)]="searchKey" class="form-control mr-sm-2 float-right" type="search" 
+                placeholder="Search for keywords. Ex: phone" aria-label="Search" (input)="search()" [ngModelOptions]="{standalone: true}">
+        </form>
+    </div> 
+</div>
+
+<div class="row mx-4 my-3">
+    <div class="card text-center bg-light border-0" *ngIf="products.length == 0">
+        <h4 class="font-weight-bold mt-3 ">No items found for the keyword {{searchKey}}</h4>
+    </div>
+    <div class="col-md-3 col-sm-6 my-2" *ngFor="let product of products">
+        <div class="product-grid">
+            <div class="product-image">
+                <img class="display-pic" src="{{product.thumbnail}}">
+                <span class="product-discount-label">- {{product.discountPercentage}}%</span>
+                <ul class="product-links">
+                    <li>
+                        <a href="../product-details/{{product.id}}" data-tip="View Product">
+                            <fa-icon [icon]="['far', 'eye']"></fa-icon>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../add-edit-product/{{product.id}}" data-tip="Edit Product">
+                            <fa-icon [icon]="['fas', 'pen']"></fa-icon>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        <div class="product-content">
+            <ng-template #t let-fill="fill">
+                <span class="star" [class.full]="fill === 100">
+                    <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+                </span>
+            </ng-template>
+            
+            <ngb-rating [rate]="product.rating" [starTemplate]="t" [readonly]="true" [max]="5"></ngb-rating>
+            <h3 class="title"><a href="#">{{product.title}}</a></h3>
+            <div class="price"> ${{product.price}}</div>
+        </div>
+    </div>
+</div>
+
+</div>
